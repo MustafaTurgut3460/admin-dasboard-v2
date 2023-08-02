@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap');
+
+:root {
+  --color-white: #fff;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-background: #f6f6f9;
+  --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-dark);
+  width: 100vw;
+  height: 100vh;
+  font-size: 0.88rem;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lexend', sans-serif;
+}
+
+.card {
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+  margin-top: 1rem;
+}
+
+.card:hover{
+  box-shadow: none;
+}
+
+.dark-mode-variables {
+  --color-background: #181a1e;
+  --color-white: #202528;
+  --color-dark: #d1d1d1;
+  --color-light: rgba(0, 0, 0, 0.4);
+  --box-shadow: 0 0rem 0rem var(--color-light);
+}
+
+.profile-avatar:hover{
+  cursor: pointer;
+}
