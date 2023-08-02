@@ -12,6 +12,10 @@ import Charts from "./pages/charts/Charts";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import NotFound from "./pages/not-found/NotFound";
+import LineChart from "./pages/line-chart/LineChart";
+import AreaChart from "./pages/area-chart/AreaChart";
+import PieChart from "./pages/pie-chart/PieChart";
+import BarChart from "./pages/bar-chart/BarChart";
 function App() {
   const themeSelector = useSelector((state: any) => state.theme);
 
@@ -35,7 +39,12 @@ function App() {
               <Route index element={<Dashboard />} />
               <Route path="tables" element={<Tables />} />
               <Route path="cards" element={<Cards />} />
-              <Route path="charts" element={<Charts />} />
+              <Route path="charts" element={<Charts />}>
+                <Route index path="line" element={<LineChart />}/>
+                <Route path="area" element={<AreaChart />}/>
+                <Route path="bar" element={<BarChart />}/>
+                <Route path="pie" element={<PieChart />}/>
+              </Route>
               <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="/login" element={<Login />} />
