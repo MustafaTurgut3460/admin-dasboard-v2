@@ -5,6 +5,9 @@ const rows: GridRowsProp = [
   { id: 1, col1: "Hello", col2: 32, col3: "Deneme"},
   { id: 2, col1: "DataGridPro", col2: 56, col3: "Deneme" },
   { id: 3, col1: "MUI", col2: 22, col3: "Deneme" },
+  { id: 4, col1: "Hello", col2: 32, col3: "Deneme"},
+  { id: 5, col1: "DataGridPro", col2: 56, col3: "Deneme" },
+  { id: 6, col1: "MUI", col2: 22, col3: "Deneme" },
 ];
 
 const columns: GridColDef[] = [
@@ -16,7 +19,7 @@ const columns: GridColDef[] = [
 const BasicTable = () => {
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} checkboxSelection/>
+      <DataGrid rows={rows} columns={columns} checkboxSelection hideFooter/>
     </div>
   );
 };

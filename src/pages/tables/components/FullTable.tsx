@@ -18,7 +18,6 @@ for (let i = 0; i < 100; i++) {
     text4: "Deneme",
     text5: "Deneme",
     text6: "Deneme",
-    edit: "",
   };
 
   datas.push(data);
@@ -57,7 +56,6 @@ const columns: GridColDef[] = [
   { field: "text4", headerName: "Text4", width: 150, editable: true },
   { field: "text5", headerName: "Text5", width: 150, editable: true },
   { field: "text6", headerName: "Text6", width: 150, editable: true },
-  { field: "edit", headerName: "Edit", width: 150, editable: true },
 ];
 
 const FullTable = () => {
