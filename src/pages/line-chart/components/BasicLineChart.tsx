@@ -1,7 +1,10 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const BasicLineChart = () => {
+  const theme = useSelector((state: any) => state.theme).theme;
+
   const series = [
     {
       name: "Desktops",
@@ -16,6 +19,11 @@ const BasicLineChart = () => {
       zoom: {
         enabled: false,
       },
+      background: "transparent",
+    },
+    theme: {
+      mode: theme === "light" ? "dark" : "light",
+      palette: "palette1",
     },
     dataLabels: {
       enabled: false,
@@ -24,8 +32,9 @@ const BasicLineChart = () => {
       curve: "straight",
     },
     grid: {
+      borderColor: theme === "light" ? "#16181f" : "#e5e5e5",
       row: {
-        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+        colors: ["transparent"], // takes an array which will be repeated on columns
         opacity: 0.5,
       },
     },

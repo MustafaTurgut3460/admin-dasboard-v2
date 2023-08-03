@@ -1,7 +1,10 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const WithDataLabelsLineChart = () => {
+  const theme = useSelector((state: any) => state.theme).theme;
+
   const series = [
     {
       name: "High - 2013",
@@ -28,23 +31,24 @@ const WithDataLabelsLineChart = () => {
       toolbar: {
         show: false,
       },
+      background: "transparent",
     },
-    colors: ["#77B6EA", "#545454"],
+    theme: {
+      mode: theme === "light" ? "dark" : "light",
+      palette: "palette1",
+    },
+    colors: ["#77B6EA", "#5161ce"],
     dataLabels: {
       enabled: true,
     },
     stroke: {
       curve: "smooth",
     },
-    title: {
-      text: "Average High & Low Temperature",
-      align: "left",
-    },
     grid: {
-      borderColor: "#e7e7e7",
+      borderColor: theme === "light" ? "#16181f" : "#e5e5e5",
       row: {
-        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-        opacity: 0.5,
+        colors: ["transparent"], // takes an array which will be repeated on columns
+        opacity: 0.2,
       },
     },
     markers: {

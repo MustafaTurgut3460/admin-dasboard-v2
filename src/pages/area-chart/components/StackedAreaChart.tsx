@@ -1,6 +1,7 @@
 import React from "react";
 
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const generateDayWiseTimeSeries = (baseval: any, count: any, yrange: any) => {
   let i = 0;
@@ -18,6 +19,9 @@ const generateDayWiseTimeSeries = (baseval: any, count: any, yrange: any) => {
 };
 
 const StackedAreaChart = () => {
+  const theme = useSelector((state: any) => state.theme).theme;
+
+  
   const series = [
     {
       name: "South",
@@ -64,6 +68,11 @@ const StackedAreaChart = () => {
           console.log(new Date(e.xaxis.min));
         },
       },
+      background: "transparent"
+    },
+    theme: {
+      mode: theme === "light" ? "dark" : "light",
+      palette: "palette1"
     },
     colors: ["#008FFB", "#00E396", "#CED4DC"],
     dataLabels: {
@@ -71,6 +80,9 @@ const StackedAreaChart = () => {
     },
     stroke: {
       curve: "smooth",
+    },
+    grid: {
+      borderColor: theme === "light" ? "#16181f" : "#e5e5e5",
     },
     fill: {
       type: "gradient",

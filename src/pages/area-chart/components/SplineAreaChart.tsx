@@ -1,7 +1,11 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const SplineAreaChart = () => {
+
+  const theme = useSelector((state: any) => state.theme).theme;
+
   const series = [
     {
       name: "series1",
@@ -17,12 +21,20 @@ const SplineAreaChart = () => {
     chart: {
       height: 350,
       type: "area",
+      background: "transparent"
     },
     dataLabels: {
       enabled: false,
     },
+    theme: {
+      mode: theme === "light" ? "dark" : "light",
+      palette: "palette1"
+    },
     stroke: {
       curve: "smooth",
+    },
+    grid: {
+      borderColor: theme === "light" ? "#16181f" : "#e5e5e5",
     },
     xaxis: {
       type: "datetime",

@@ -1,13 +1,21 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const DashboardDonutChart = () => {
+
+  const theme = useSelector((state: any) => state.theme).theme;
+
   const series = [44, 55, 41, 17, 15];
 
   const options: ApexCharts.ApexOptions | undefined = {
     chart: {
       type: "donut",
-
+      background: "transparent"
+    },
+    theme: {
+      mode: theme === "light" ? "dark" : "light",
+      palette: "palette1"
     },
     labels: ["Windows", "MacOS", "Linux", "Android", "IOS"],
     stroke: {

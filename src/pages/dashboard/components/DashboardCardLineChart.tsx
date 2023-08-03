@@ -1,26 +1,24 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-interface DataPoint {
-  x: string;
-  y: number;
+interface Props {
+  color: string,
+  data: {x: string, y: number}[],
+  dataName: string,
 }
 
-const DashboardCardLineChart = () => {
+const DashboardCardLineChart: React.FC<Props> = ({color, data, dataName}) => {
+
+  let categories: string[] = [];
+  data.forEach(data => {
+    categories.push(data.x);
+  });
+
+
   const series = [
     {
-      name: "series1",
-      data: [
-        { x: "Ocak", y: 31 },
-        { x: "Şubat", y: 55 },
-        { x: "Mart", y: 28 },
-        { x: "Nisan", y: 102 },
-        { x: "Mayıs", y: 178 },
-        { x: "Haziran", y: 25 },
-        { x: "Temmuz", y: 100 },
-        { x: "Ağustos", y: 72 },
-        { x: "Eylül", y: 122 },
-      ],
+      name: dataName,
+      data: data,
     },
   ];
 
@@ -34,7 +32,7 @@ const DashboardCardLineChart = () => {
       dropShadow: {
         enabled: true,
         blur: 3,
-        color: "#5161ce",
+        color: color,
         left: 2,
         top: 2,
       },
@@ -52,27 +50,13 @@ const DashboardCardLineChart = () => {
     stroke: {
       curve: "smooth",
       width: 3,
-      colors: ["#5161ce"]
+      colors: [color]
     },
     xaxis: {
       type: "category",
-      categories: [
-        "Ocak",
-        "Şubat",
-        "Mart",
-        "Nisan",
-        "Mayıs",
-        "Haziran",
-        "Temmuz",
-        "Ağustos",
-        "Eylül"
-      ],
+      categories: categories,
     },
-    tooltip: {
-      x: {
-        format: "dd/MM/yy HH:mm",
-      },
-    },
+    
   };
   return (
     <div id="chart">

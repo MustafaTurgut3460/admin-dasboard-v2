@@ -1,7 +1,12 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const BasicAreaChart = () => {
+
+  const theme = useSelector((state: any) => state.theme).theme;
+
+  
   const series = [
     {
       name: "STOCK ABC",
@@ -16,9 +21,14 @@ const BasicAreaChart = () => {
       zoom: {
         enabled: false,
       },
+      background: "transparent"
     },
     dataLabels: {
       enabled: false,
+    },
+    theme: {
+      mode: theme === "light" ? "dark" : "light",
+      palette: "palette1"
     },
     stroke: {
       curve: "smooth",
@@ -27,6 +37,9 @@ const BasicAreaChart = () => {
     xaxis: {
       type: "category",
       position: "0"
+    },
+    grid: {
+      borderColor: theme === "light" ? "#16181f" : "#e5e5e5",
     },
     yaxis: {
       opposite: true,

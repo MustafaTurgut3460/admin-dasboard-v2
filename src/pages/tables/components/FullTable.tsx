@@ -33,24 +33,32 @@ const columns: GridColDef[] = [
     width: 200,
     editable: true,
     renderCell(params) {
-        return (
-            <div style={{display: "flex", alignItems: "center"}}>
-                <Avatar src={require("../../../assets/images/avatar1.png")} />
-                <p style={{marginLeft: "0.5rem"}}> {params.value} </p>
-            </div>
-        )
+      return (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Avatar src={require("../../../assets/images/avatar1.png")} />
+          <p style={{ marginLeft: "0.5rem" }}> {params.value} </p>
+        </div>
+      );
     },
   },
-  { field: "tag", headerName: "Tag", width: 150, editable: true, renderCell(params) {
-      return (
-        <Tag color="blue"> {params.value} </Tag>
-      )
-  },},
-  { field: "progress", headerName: "Progress", width: 150, editable: true, renderCell(params) {
-      return (
-        <Progress percent={params.value} />
-      )
-  }},
+  {
+    field: "tag",
+    headerName: "Tag",
+    width: 150,
+    editable: true,
+    renderCell(params) {
+      return <Tag color="blue"> {params.value} </Tag>;
+    },
+  },
+  {
+    field: "progress",
+    headerName: "Progress",
+    width: 150,
+    editable: true,
+    renderCell(params) {
+      return <Progress percent={params.value} />;
+    },
+  },
   { field: "text2", headerName: "Text2", width: 150, editable: true },
   { field: "text3", headerName: "Text3", width: 150, editable: true },
   { field: "text4", headerName: "Text4", width: 150, editable: true },

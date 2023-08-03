@@ -4,7 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import DashboardCardLineChart from "./DashboardCardLineChart";
 
-const DashboardCard = () => {
+interface Props {
+  color: string,
+  data: {x: string, y: number}[],
+  dataName: string,
+}
+
+const DashboardCard: React.FC<Props> = ({color, data, dataName}) => {
   return (
     <div className="card">
       <Row style={{alignItems: "center"}}>
@@ -15,7 +21,7 @@ const DashboardCard = () => {
         </Col>
         {/* chart */}
         <Col span={16}>
-          <DashboardCardLineChart />
+          <DashboardCardLineChart color={color} data={data} dataName={dataName} />
         </Col>
       </Row>
       <Divider />

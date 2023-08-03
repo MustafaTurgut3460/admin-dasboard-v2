@@ -3,8 +3,12 @@ import React from "react";
 import SidebarMenu from "./components/SidebarMenu";
 import { Outlet } from "react-router-dom";
 import Topbar from "./components/Topbar";
+import useWindowDimensions from "../../hooks/window-dimention";
 
 const Layout = () => {
+  const {width} = useWindowDimensions();
+
+
   return (
     <Row>
       {/* sidebar menu */}
@@ -14,7 +18,7 @@ const Layout = () => {
         </div>
       </Col>
       {/* body */}
-      <Col offset={3} xs={24} lg={21} style={{ padding: "2rem" }}>
+      <Col offset={width < 1600 ? (width < 576 ? 0 : 2 ) : 3 } xs={24} md={22} lg={21} style={{ padding: "2rem" }}>
         <Topbar />
         <Outlet />
       </Col>

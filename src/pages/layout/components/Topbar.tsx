@@ -1,4 +1,10 @@
-import { faBell, faGear, faSliders } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBell,
+  faGear,
+  faMoon,
+  faSliders,
+  faSun,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Avatar,
@@ -9,8 +15,11 @@ import {
   MenuProps,
   Row,
   Space,
+  Switch,
 } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Themes, setTheme } from "../../../actions/themeAction";
 
 const items: MenuProps["items"] = [
   {
@@ -36,21 +45,33 @@ const items: MenuProps["items"] = [
 ];
 
 const Topbar = () => {
+  const theme = useSelector((state: any) => state.theme);
+  const dispatch = useDispatch();
+  const [checked, setChecked] = useState(theme.theme === Themes.Light);
+
+  const pagePath = useSelector((state: any) => state.page).path;
+
+  let pages: {title: string}[] =  [];
+  pagePath.split("/").forEach((path: any) => {
+    pages.push({title: path})
+  });
+  
+
+  useEffect(() => {
+    dispatch(
+      setTheme(theme.theme === Themes.Dark ? Themes.Light : Themes.Dark)
+    );
+    document.body.classList.toggle("dark-mode-variables");
+  }, [checked]);
+
   return (
-    <Row style={{paddingRight: "1rem"}}>
+    <Row style={{ paddingRight: "1rem" }}>
       <Col span={24}>
         <Row justify={"space-between"}>
           {/* title */}
           <Col>
             <Breadcrumb
-              items={[
-                {
-                  title: "Home",
-                },
-                {
-                  title: <a href="">Dashboard</a>,
-                },
-              ]}
+              items={[{title: "Home"}, ...pages] }
             />
             <h1>Dashboard</h1>
           </Col>
@@ -85,6 +106,14 @@ const Topbar = () => {
                       style={{ color: "gray", fontSize: "1.2rem" }}
                     />
                   </Button>
+                </Col>
+                <Col>
+                  <Switch
+                    checkedChildren={<FontAwesomeIcon icon={faSun} />}
+                    unCheckedChildren={<FontAwesomeIcon icon={faMoon} />}
+                    defaultChecked={checked}
+                    onChange={(checked) => setChecked(checked)}
+                  />
                 </Col>
                 <Col>
                   <a>

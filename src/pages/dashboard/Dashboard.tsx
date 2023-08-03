@@ -46,20 +46,65 @@ const Dashboard = () => {
     setYear(parseInt(key));
   };
 
+  const data1: { x: string; y: number }[] = [
+    { x: "Ocak", y: 12},
+    { x: "Şubat", y: 15 },
+    { x: "Mart", y: 52 },
+    { x: "Nisan", y: 22 },
+    { x: "Mayıs", y: 53 },
+    { x: "Haziran", y: 66 },
+    { x: "Temmuz", y: 100},
+    { x: "Ağustos", y: 23 },
+    { x: "Eylül", y: 11 },
+  ];
+  const data2: { x: string; y: number }[] = [
+    { x: "Ocak", y: 25 },
+    { x: "Şubat", y: 23 },
+    { x: "Mart", y: 65 },
+    { x: "Nisan", y: 12 },
+    { x: "Mayıs", y: 20 },
+    { x: "Haziran", y: 25 },
+    { x: "Temmuz", y: 45 },
+    { x: "Ağustos", y: 23 },
+    { x: "Eylül", y: 10 },
+  ];
+  const data3: { x: string; y: number }[] = [
+    { x: "Ocak", y: 65 },
+    { x: "Şubat", y: 76 },
+    { x: "Mart", y: 100 },
+    { x: "Nisan", y: 50 },
+    { x: "Mayıs", y: 30 },
+    { x: "Haziran", y: 20 },
+    { x: "Temmuz", y: 45 },
+    { x: "Ağustos", y: 56 },
+    { x: "Eylül", y: 21 },
+  ];
+  const data4: { x: string; y: number }[] = [
+    { x: "Ocak", y: 100 },
+    { x: "Şubat", y: 80 },
+    { x: "Mart", y: 70 },
+    { x: "Nisan", y: 65 },
+    { x: "Mayıs", y: 87 },
+    { x: "Haziran", y: 97 },
+    { x: "Temmuz", y: 50 },
+    { x: "Ağustos", y: 20 },
+    { x: "Eylül", y: 10 },
+  ];
+
   return (
     <div style={{ marginTop: "2rem" }}>
-      <Row justify={'space-around'}>
-        <Col xs={16} lg={9} xl={6}>
-          <DashboardCard />
+      <Row justify={"space-around"}>
+        <Col xs={20} md={16} lg={11} xl={6}>
+          <DashboardCard color={"#5161ce"} data={data1} dataName={"Veri 1"} />
         </Col>
-        <Col xs={16} lg={9} xl={6}>
-          <DashboardCard />
+        <Col xs={20} md={16} lg={11} xl={6}>
+          <DashboardCard color={"#d1757e"} data={data2} dataName={"Veri 2"} />
         </Col>
-        <Col xs={16} lg={9} xl={6}>
-          <DashboardCard />
+        <Col xs={20} md={16} lg={11} xl={6}>
+          <DashboardCard color={"#66ccbe"} data={data3} dataName={"Veri 3"} />
         </Col>
-        <Col xs={16} lg={9} xl={5}>
-          <DashboardCard />
+        <Col xs={20} md={16} lg={11} xl={5}>
+          <DashboardCard color={"#5c8bd6"} data={data4} dataName={"Veri 4"} />
         </Col>
       </Row>
       <Row justify={"space-between"}>
@@ -124,7 +169,10 @@ const Dashboard = () => {
           <DashboardBasicTable />
         </Col>
         <Col offset={1} xs={24} xl={8} className="card">
-          <Row style={{alignItems: "center", marginBottom: "2rem"}} justify={'space-between'}>
+          <Row
+            style={{ alignItems: "center", marginBottom: "2rem" }}
+            justify={"space-between"}
+          >
             <Col>
               <p>En Çok Satan Ürünler</p>
             </Col>
@@ -138,10 +186,34 @@ const Dashboard = () => {
               </Button>
             </Col>
           </Row>
-          <ProductItem name={"Ürün İsmi"} description={"Ürün açıklaması"} tagColor={"gold"} image={p1} number={1} />
-          <ProductItem name={"Ürün İsmi"} description={"Ürün açıklaması"} tagColor={"geekblue"} image={p2} number={2} />
-          <ProductItem name={"Ürün İsmi"} description={"Ürün açıklaması"} tagColor={"orange"} image={p3} number={3} />
-          <ProductItem name={"Ürün İsmi"} description={"Ürün açıklaması"} tagColor={"default"} image={p1} number={4} />
+          <ProductItem
+            name={"Ürün İsmi"}
+            description={"Ürün açıklaması"}
+            tagColor={"gold"}
+            image={p1}
+            number={1}
+          />
+          <ProductItem
+            name={"Ürün İsmi"}
+            description={"Ürün açıklaması"}
+            tagColor={"geekblue"}
+            image={p2}
+            number={2}
+          />
+          <ProductItem
+            name={"Ürün İsmi"}
+            description={"Ürün açıklaması"}
+            tagColor={"orange"}
+            image={p3}
+            number={3}
+          />
+          <ProductItem
+            name={"Ürün İsmi"}
+            description={"Ürün açıklaması"}
+            tagColor={"default"}
+            image={p1}
+            number={4}
+          />
         </Col>
       </Row>
     </div>

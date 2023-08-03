@@ -1,7 +1,10 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const SteplineLineChart = () => {
+  const theme = useSelector((state: any) => state.theme).theme;
+
   const series = [
     {
       data: [34, 44, 54, 21, 12, 43, 33, 23, 66, 66, 58],
@@ -12,6 +15,11 @@ const SteplineLineChart = () => {
     chart: {
       type: "line",
       height: 350,
+      background: "transparent",
+    },
+    theme: {
+      mode: theme === "light" ? "dark" : "light",
+      palette: "palette1",
     },
     stroke: {
       curve: "stepline",
@@ -19,9 +27,8 @@ const SteplineLineChart = () => {
     dataLabels: {
       enabled: false,
     },
-    title: {
-      text: "Stepline Chart",
-      align: "left",
+    grid: {
+      borderColor: theme === "light" ? "#16181f" : "#e5e5e5",
     },
     markers: {
       hover: {
