@@ -2,7 +2,8 @@
 
 :root {
   --color-white: #fff;
-  --color-text: #212631;
+  --color-text: #333842;
+  --color-light-text: rgb(104, 102, 102);
   --color-light: rgba(129, 134, 180, 0.18);
   --color-background: #f0f1f5;
   --box-shadow: 0 1rem 1.5rem var(--color-light);
@@ -44,6 +45,7 @@ body {
   --color-background: #0a0e15;
   --color-white: #212631;
   --color-text: #f0f1f5;
+  --color-light-text: rgb(190, 190, 190);
   --color-light: rgba(0, 0, 0, 0.1);
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
