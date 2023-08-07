@@ -17,6 +17,7 @@ import AreaChart from "./pages/area-chart/AreaChart";
 import PieChart from "./pages/pie-chart/PieChart";
 import BarChart from "./pages/bar-chart/BarChart";
 import { ThemeProvider, createTheme } from "@mui/material";
+import Forms from "./pages/forms/Forms";
 function App() {
   const themeSelector = useSelector((state: any) => state.theme);
 
@@ -60,6 +61,7 @@ function App() {
                 <Route index element={<Dashboard />} />
                 <Route path="tables" element={<Tables />} />
                 <Route path="cards" element={<Cards />} />
+                <Route path="forms" element={<Forms />} />
                 <Route path="charts" element={<Charts />}>
                   <Route index path="line" element={<LineChart />} />
                   <Route path="area" element={<AreaChart />} />

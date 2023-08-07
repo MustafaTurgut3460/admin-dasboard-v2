@@ -8,6 +8,7 @@ import {
   faChartSimple,
   faDashboard,
   faInfo,
+  faListCheck,
   faPersonChalkboard,
   faTable,
 } from "@fortawesome/free-solid-svg-icons";
@@ -70,5 +71,12 @@ export const routes: MenuItem[] = [
     label: "Cards",
     path: "Cards",
     icon: faPersonChalkboard,
+  },
+  {
+    key: "5",
+    to: "/forms",
+    label: "Forms",
+    path: "Forms",
+    icon: faListCheck,
   },
 ];

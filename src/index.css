@@ -53,3 +53,7 @@ body {
 .profile-avatar:hover{
   cursor: pointer;
 }
+
+.social-icon-div:hover{
+  background-color: lightgray;
+}
