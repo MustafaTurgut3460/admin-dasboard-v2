@@ -1,10 +1,14 @@
 import { Col, Row } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import BasicTable from "./components/BasicTable";
 import CustomPaginationTable from "./components/CustomPaginationTable";
 import FullTable from "./components/FullTable";
+import { columns, datas } from "./values/data";
 
 const Tables = () => {
+
+  const [fullTableColumns, setFullTableColumns] = useState(columns);
+
   return (
     <>
       <Row justify={"space-between"}>
@@ -24,7 +28,7 @@ const Tables = () => {
       <Row>
         <Col span={24} className="card">
           <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Full Table</p>
-          <FullTable />
+          <FullTable datas={datas} columns={fullTableColumns} height={500} initPageSize={5} pageSizeOptions={[5, 10, 20, 50, 100]} />
         </Col>
       </Row>
     </>

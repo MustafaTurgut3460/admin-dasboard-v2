@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Avatar,
+  Badge,
   Breadcrumb,
   Button,
   Col,
@@ -20,6 +21,9 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Themes, setTheme } from "../../../actions/themeAction";
+import NotifyItem1 from "./NotifyItem1";
+import NotifyItem2 from "./NotifyItem2";
+import NotifyItem3 from "./NotifyItem3";
 
 const items: MenuProps["items"] = [
   {
@@ -44,6 +48,27 @@ const items: MenuProps["items"] = [
   },
 ];
 
+const notificationItems: MenuProps["items"] = [
+  {
+    label: <NotifyItem1 />,
+    key: "0",
+  },
+  {
+    type: "divider",
+  },
+  {
+    label: <NotifyItem2 />,
+    key: "1",
+  },
+  {
+    type: "divider",
+  },
+  {
+    label: <NotifyItem3 />,
+    key: "2",
+  },
+];
+
 const Topbar = () => {
   const theme = useSelector((state: any) => state.theme);
   const dispatch = useDispatch();
@@ -51,11 +76,10 @@ const Topbar = () => {
 
   const pagePath = useSelector((state: any) => state.page).path;
 
-  let pages: {title: string}[] =  [];
+  let pages: { title: string }[] = [];
   pagePath.split("/").forEach((path: any) => {
-    pages.push({title: path})
+    pages.push({ title: path });
   });
-  
 
   useEffect(() => {
     dispatch(
@@ -70,10 +94,8 @@ const Topbar = () => {
         <Row justify={"space-between"}>
           {/* title */}
           <Col>
-            <Breadcrumb
-              items={[{title: "Home"}, ...pages] }
-            />
-            <h1>Dashboard</h1>
+            <Breadcrumb items={[{ title: "Home" }, ...pages]} />
+            <h1> {pages[pages.length-1].title} </h1>
           </Col>
           {/* option icons */}
           <Col>
@@ -92,18 +114,28 @@ const Topbar = () => {
                   </Dropdown>
                 </Col>
                 <Col>
-                  <Button type="text" shape="circle">
-                    <FontAwesomeIcon
-                      icon={faBell}
-                      style={{ color: "gray", fontSize: "1.2rem" }}
-                    />
-                  </Button>
+                  <Dropdown
+                    menu={{ items: notificationItems }}
+                    trigger={["click"]}
+                    placement="bottomRight"
+                  >
+                    <Button type="text" shape="circle">
+                      <Badge count={3} size="small" style={{ color: "white" }}>
+                        <img
+                          src={require("../../../assets/images/bell.png")}
+                          alt=""
+                          style={{ width: 24 }}
+                        />
+                      </Badge>
+                    </Button>
+                  </Dropdown>
                 </Col>
                 <Col>
                   <Button type="text" shape="circle">
-                    <FontAwesomeIcon
-                      icon={faSliders}
-                      style={{ color: "gray", fontSize: "1.2rem" }}
+                    <img
+                      src={require("../../../assets/images/settings.png")}
+                      alt=""
+                      style={{ width: 20 }}
                     />
                   </Button>
                 </Col>

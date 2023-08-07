@@ -9,20 +9,29 @@ import {
   faChartLine,
   faChartArea,
   faChartPie,
+  IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "../../../hooks/window-dimention";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPage } from "../../../actions/pageAction";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-const SidebarMenu = () => {
+export interface MenuItem {
+  key: string;
+  label: string;
+  to: string;
+  icon?: IconProp;
+  subMenu?: MenuItem[];
+  path: string;
+}
 
-  const [selectedKey, setSelectedKey] = useState("1");
+const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
+  const [selectedKey, setSelectedKey] = useState(localStorage.getItem("key") || menuItems[0].key);
 
   const dispatch = useDispatch();
 
   const { width } = useWindowDimensions();
-
 
   const getStyle = (key: string): React.CSSProperties | undefined => {
     return selectedKey === key
@@ -36,9 +45,47 @@ const SidebarMenu = () => {
 
   const handleNavClick = (key: string, path: string) => {
     setSelectedKey(key);
+    localStorage.setItem("key", key);
 
-    dispatch(setPage({path: path}));
-  }
+    dispatch(setPage({ path: path }));
+  };
+
+  const generateDynmaicMenu = (menuData: MenuItem[]) => {
+    return menuData.map((menuItem) => {
+      if (menuItem.subMenu) {
+        return (
+          <Menu.SubMenu
+            key={menuItem.key}
+            title={menuItem.label}
+            icon={
+              menuItem.icon ? <FontAwesomeIcon icon={menuItem.icon} /> : null
+            }
+          >
+            {generateDynmaicMenu(menuItem.subMenu)}
+          </Menu.SubMenu>
+        );
+      } else {
+        return (
+          <Menu.Item
+            key={menuItem.key}
+            icon={
+              menuItem.icon ? <FontAwesomeIcon icon={menuItem.icon} /> : null
+            }
+          >
+            <Link
+              to={menuItem.to}
+              onClick={() => {
+                handleNavClick(menuItem.key, menuItem.path);
+              }}
+              style={getStyle(menuItem.key)}
+            >
+              {menuItem.label}
+            </Link>
+          </Menu.Item>
+        );
+      }
+    });
+  };
 
   return (
     <Menu
@@ -74,11 +121,18 @@ const SidebarMenu = () => {
       )}
 
       {/* Menü Öğeleri */}
-      <Menu.Item
+      {generateDynmaicMenu(menuItems)}
+      {/* <Menu.Item
         key="1"
         icon={<FontAwesomeIcon icon={faGauge} style={getStyle("1")} />}
       >
-        <Link to="/" onClick={() => {handleNavClick("1", "Dashboard")}} style={getStyle("1")}>
+        <Link
+          to="/"
+          onClick={() => {
+            handleNavClick("1", "Dashboard");
+          }}
+          style={getStyle("1")}
+        >
           Dashboard
         </Link>
       </Menu.Item>
@@ -89,7 +143,9 @@ const SidebarMenu = () => {
         <Link
           to="/tables"
           style={getStyle("2")}
-          onClick={() => {handleNavClick("2", "Tables")}}
+          onClick={() => {
+            handleNavClick("2", "Tables");
+          }}
         >
           Tables
         </Link>
@@ -103,7 +159,9 @@ const SidebarMenu = () => {
           <Link
             to="/charts/line"
             style={getStyle("31")}
-            onClick={() => {handleNavClick("31", "Charts/Line Chart")}}
+            onClick={() => {
+              handleNavClick("31", "Charts/Line Chart");
+            }}
           >
             <FontAwesomeIcon
               icon={faChartLine}
@@ -116,7 +174,9 @@ const SidebarMenu = () => {
           <Link
             to="/charts/area"
             style={getStyle("32")}
-            onClick={() => {handleNavClick("32", "Charts/Area Chart")}}
+            onClick={() => {
+              handleNavClick("32", "Charts/Area Chart");
+            }}
           >
             <FontAwesomeIcon
               icon={faChartArea}
@@ -129,7 +189,9 @@ const SidebarMenu = () => {
           <Link
             to="/charts/bar"
             style={getStyle("33")}
-            onClick={() => {handleNavClick("33", "Charts/Bar Chart")}}
+            onClick={() => {
+              handleNavClick("33", "Charts/Bar Chart");
+            }}
           >
             <FontAwesomeIcon
               icon={faChartSimple}
@@ -142,7 +204,9 @@ const SidebarMenu = () => {
           <Link
             to="/charts/pie"
             style={getStyle("34")}
-            onClick={() => {handleNavClick("34", "Charts/Pie Chart")}}
+            onClick={() => {
+              handleNavClick("34", "Charts/Pie Chart");
+            }}
           >
             <FontAwesomeIcon
               icon={faChartPie}
@@ -159,11 +223,13 @@ const SidebarMenu = () => {
         <Link
           to="/cards"
           style={getStyle("4")}
-          onClick={() => {handleNavClick("4", "Cards")}}
+          onClick={() => {
+            handleNavClick("4", "Cards");
+          }}
         >
           Cards
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
     </Menu>
   );
 };

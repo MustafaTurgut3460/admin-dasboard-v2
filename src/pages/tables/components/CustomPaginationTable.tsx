@@ -31,13 +31,6 @@ const columns: GridColDef[] = [
 ];
 const CustomPaginationTable = () => {
 
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
-  const [paginatedData, setPaginatedData] = useState(data.slice((page-1) * pageSize, page * pageSize))
-
-  useEffect(() => {
-    setPaginatedData(data.slice((page-1) * pageSize, page * pageSize))
-  }, [page, pageSize])
 
   return (
     <div style={{ height: 400, width: '100%' }}>
@@ -46,7 +39,6 @@ const CustomPaginationTable = () => {
         columns={columns}
         initialState={{pagination: {paginationModel: {pageSize: 5, page: 0}}}}
         pageSizeOptions={[5, 10, 25]}
-        onPaginationModelChange={(params) => {setPage(params.page); setPageSize(params.pageSize)}}
       />
     </div>
   );
