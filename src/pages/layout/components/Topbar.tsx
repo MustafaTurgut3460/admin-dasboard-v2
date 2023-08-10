@@ -4,6 +4,7 @@ import {
   faMoon,
   faSliders,
   faSun,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,6 +25,9 @@ import { Themes, setTheme } from "../../../actions/themeAction";
 import NotifyItem1 from "./NotifyItem1";
 import NotifyItem2 from "./NotifyItem2";
 import NotifyItem3 from "./NotifyItem3";
+import { setThemeToLocalStorage } from "../../../services/local-storage-service";
+import { useNavigate } from "react-router-dom";
+import { setPage } from "../../../actions/pageAction";
 
 const items: MenuProps["items"] = [
   {
@@ -45,6 +49,19 @@ const items: MenuProps["items"] = [
       />
     ),
     key: "1",
+  },
+];
+
+const profileItems: MenuProps["items"] = [
+  {
+    label: "Profilim",
+    key: "0",
+    icon: <FontAwesomeIcon icon={faUser} />,
+  },
+  {
+    label: "Ayarlar",
+    key: "1",
+    icon: <FontAwesomeIcon icon={faGear} />,
   },
 ];
 
@@ -73,6 +90,7 @@ const Topbar = () => {
   const theme = useSelector((state: any) => state.theme);
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(theme.theme === Themes.Light);
+  const navigate = useNavigate();
 
   const pagePath = useSelector((state: any) => state.page).path;
 
@@ -85,8 +103,18 @@ const Topbar = () => {
     dispatch(
       setTheme(theme.theme === Themes.Dark ? Themes.Light : Themes.Dark)
     );
+    setThemeToLocalStorage(checked ? "light" : "dark");
     document.body.classList.toggle("dark-mode-variables");
   }, [checked]);
+
+  const profileOnClick = (info: any) => {
+    console.log(info);
+    
+    if(info.key === "0"){
+      navigate("/profile")
+      dispatch(setPage({path: "Profilim"}))
+    }
+  }
 
   return (
     <Row style={{ paddingRight: "1rem" }}>
@@ -95,7 +123,7 @@ const Topbar = () => {
           {/* title */}
           <Col>
             <Breadcrumb items={[{ title: "Home" }, ...pages]} />
-            <h1> {pages[pages.length-1].title} </h1>
+            <h1> {pages[pages.length - 1].title} </h1>
           </Col>
           {/* option icons */}
           <Col>
@@ -131,15 +159,6 @@ const Topbar = () => {
                   </Dropdown>
                 </Col>
                 <Col>
-                  <Button type="text" shape="circle">
-                    <img
-                      src={require("../../../assets/images/settings.png")}
-                      alt=""
-                      style={{ width: 20 }}
-                    />
-                  </Button>
-                </Col>
-                <Col>
                   <Switch
                     checkedChildren={<FontAwesomeIcon icon={faSun} />}
                     unCheckedChildren={<FontAwesomeIcon icon={faMoon} />}
@@ -148,11 +167,17 @@ const Topbar = () => {
                   />
                 </Col>
                 <Col>
-                  <a>
-                    <Avatar
-                      src={require("../../../assets/images/avatar1.png")}
-                    />
-                  </a>
+                  <Dropdown
+                    menu={{ items: profileItems, onClick: profileOnClick}}
+                    trigger={["click"]}
+                    placement="bottomRight"
+                  >
+                    <a>
+                      <Avatar
+                        src={require("../../../assets/images/avatar1.png")}
+                      />
+                    </a>
+                  </Dropdown>
                 </Col>
               </Space>
             </Row>

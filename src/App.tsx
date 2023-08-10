@@ -1,8 +1,8 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getThemeFromStorage } from "./services/local-storage-service";
-import { useSelector } from "react-redux";
-import { ThemeState, Themes } from "./actions/themeAction";
+import { useDispatch, useSelector } from "react-redux";
+import { ThemeState, Themes, setTheme } from "./actions/themeAction";
 import { ConfigProvider, theme } from "antd";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Layout from "./pages/layout/Layout";
@@ -26,7 +26,7 @@ function App() {
   const [muixTheme, setMuixTheme] = useState(
     createTheme({
       palette: {
-        mode: dark ? "dark" : "light"
+        mode: dark ? "dark" : "light",
       },
     })
   );
@@ -35,12 +35,11 @@ function App() {
     setMuixTheme(
       createTheme({
         palette: {
-          mode: dark ? "light" : "dark"
+          mode: dark ? "light" : "dark",
         },
       })
-    )
-  }, [themeSelector])
-
+    );
+  }, [themeSelector]);
 
   return (
     <>

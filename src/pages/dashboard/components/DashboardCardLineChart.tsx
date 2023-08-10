@@ -26,6 +26,7 @@ const DashboardCardLineChart: React.FC<Props> = ({color, data, dataName}) => {
     chart: {
       height: 75,
       type: "line",
+      
       sparkline: {
         enabled: true
       },
