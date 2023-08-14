@@ -21,7 +21,7 @@ import Forms from "./pages/forms/Forms";
 function App() {
   const themeSelector = useSelector((state: any) => state.theme);
 
-  var dark: boolean = themeSelector.theme === Themes.Dark;
+  const dark: boolean = themeSelector.theme === Themes.Dark;
 
   const [muixTheme, setMuixTheme] = useState(
     createTheme({

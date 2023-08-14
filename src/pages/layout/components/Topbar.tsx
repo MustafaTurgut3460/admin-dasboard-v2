@@ -28,6 +28,8 @@ import NotifyItem3 from "./NotifyItem3";
 import { setThemeToLocalStorage } from "../../../services/local-storage-service";
 import { useNavigate } from "react-router-dom";
 import { setPage } from "../../../actions/pageAction";
+import { Icon } from "@iconify/react";
+import { setCollapsed } from "../../../actions/menuAction";
 
 const items: MenuProps["items"] = [
   {
@@ -63,6 +65,11 @@ const profileItems: MenuProps["items"] = [
     key: "1",
     icon: <FontAwesomeIcon icon={faGear} />,
   },
+  {
+    label: "Çıkış Yap",
+    key: "2",
+    icon: <Icon icon="majesticons:logout" />,
+  },
 ];
 
 const notificationItems: MenuProps["items"] = [
@@ -88,6 +95,7 @@ const notificationItems: MenuProps["items"] = [
 
 const Topbar = () => {
   const theme = useSelector((state: any) => state.theme);
+  const collapsed = useSelector((state: any) => state.menu);
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(theme.theme === Themes.Light);
   const navigate = useNavigate();
@@ -109,11 +117,17 @@ const Topbar = () => {
 
   const profileOnClick = (info: any) => {
     console.log(info);
-    
-    if(info.key === "0"){
-      navigate("/profile")
-      dispatch(setPage({path: "Profilim"}))
+
+    if (info.key === "0") {
+      navigate("/profile");
+      dispatch(setPage({ path: "Profilim" }));
+    } else if (info.key === "2") {
+      navigate("/login");
     }
+  };
+
+  const handleMenuCollapseClick = () => {
+    dispatch(setCollapsed(!collapsed));
   }
 
   return (
@@ -130,6 +144,11 @@ const Topbar = () => {
             <Row style={{ alignItems: "center" }}>
               {/* icons */}
               <Space size={10}>
+                <Col>
+                  <Button type="text" shape="circle" onClick={handleMenuCollapseClick}>
+                    <Icon icon="ion:menu" fontSize={24} />
+                  </Button>
+                </Col>
                 <Col>
                   <Dropdown menu={{ items }} trigger={["click"]}>
                     <Button type="text" shape="circle">
@@ -168,7 +187,7 @@ const Topbar = () => {
                 </Col>
                 <Col>
                   <Dropdown
-                    menu={{ items: profileItems, onClick: profileOnClick}}
+                    menu={{ items: profileItems, onClick: profileOnClick }}
                     trigger={["click"]}
                     placement="bottomRight"
                   >

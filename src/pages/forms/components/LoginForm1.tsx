@@ -13,7 +13,7 @@ const LoginForm1 = () => {
   return (
     <Row className="card" style={{ padding: 0 }}>
       <Col
-        span={12}
+        xs={24} lg={12}
         style={{
           backgroundColor: "#67c86d",
           borderTopLeftRadius: "1rem",
@@ -65,7 +65,7 @@ const LoginForm1 = () => {
         </div>
       </Col>
       <Col
-        span={12}
+        xs={24} lg={12}
         style={{ padding: "2rem", display: "flex", alignItems: "center" }}
       >
         <div style={{ width: "100%" }}>

@@ -66,13 +66,6 @@ export const routes: MenuItem[] = [
     ],
   },
   {
-    key: "4",
-    to: "/cards",
-    label: "Cards",
-    path: "Cards",
-    icon: faPersonChalkboard,
-  },
-  {
     key: "5",
     to: "/forms",
     label: "Forms",
