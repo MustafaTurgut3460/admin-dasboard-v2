@@ -1,15 +1,31 @@
 import { MenuActions } from "../actions/menuAction";
 import { ActionType } from "../actions/themeAction";
 
-const initialState = false;
+const initialState = {
+  drawer: false,
+  collapsed: false
+};
 
-const menuReducer = (state=initialState, action: ActionType): boolean => {
-    switch (action.type){
-        case MenuActions.COLLAPSED:
-            return action.payload
-        default:
-            return state
-    }
+export interface MenuState{
+  drawer: boolean,
+  collapsed: boolean
 }
 
-export default menuReducer
+const menuReducer = (state = initialState, action: ActionType): MenuState => {
+  switch (action.type) {
+    case MenuActions.COLLAPSED:
+      return {
+        ...state,
+        collapsed: action.payload
+      };
+    case MenuActions.DRAWER:
+      return {
+        ...state,
+        drawer: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+export default menuReducer;

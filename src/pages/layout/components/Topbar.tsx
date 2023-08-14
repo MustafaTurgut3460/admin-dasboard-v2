@@ -29,7 +29,8 @@ import { setThemeToLocalStorage } from "../../../services/local-storage-service"
 import { useNavigate } from "react-router-dom";
 import { setPage } from "../../../actions/pageAction";
 import { Icon } from "@iconify/react";
-import { setCollapsed } from "../../../actions/menuAction";
+import { showDrawer } from "../../../actions/menuAction";
+import useWindowDimensions from "../../../hooks/window-dimention";
 
 const items: MenuProps["items"] = [
   {
@@ -95,10 +96,12 @@ const notificationItems: MenuProps["items"] = [
 
 const Topbar = () => {
   const theme = useSelector((state: any) => state.theme);
-  const collapsed = useSelector((state: any) => state.menu);
+  const drawer = useSelector((state: any) => state.menu).drawer;
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(theme.theme === Themes.Light);
   const navigate = useNavigate();
+
+  const {width} = useWindowDimensions();
 
   const pagePath = useSelector((state: any) => state.page).path;
 
@@ -127,8 +130,8 @@ const Topbar = () => {
   };
 
   const handleMenuCollapseClick = () => {
-    dispatch(setCollapsed(!collapsed));
-  }
+    dispatch(showDrawer(!drawer));
+  };
 
   return (
     <Row style={{ paddingRight: "1rem" }}>
@@ -144,11 +147,17 @@ const Topbar = () => {
             <Row style={{ alignItems: "center" }}>
               {/* icons */}
               <Space size={10}>
-                <Col>
-                  <Button type="text" shape="circle" onClick={handleMenuCollapseClick}>
-                    <Icon icon="ion:menu" fontSize={24} />
-                  </Button>
-                </Col>
+                { width < 768 && (
+                  <Col>
+                    <Button
+                      type="text"
+                      shape="circle"
+                      onClick={handleMenuCollapseClick}
+                    >
+                      <Icon icon="ion:menu" fontSize={24} />
+                    </Button>
+                  </Col>
+                )}
                 <Col>
                   <Dropdown menu={{ items }} trigger={["click"]}>
                     <Button type="text" shape="circle">

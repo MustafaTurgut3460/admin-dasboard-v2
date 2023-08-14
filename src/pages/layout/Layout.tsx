@@ -8,20 +8,26 @@ import { routes } from "./values/routes";
 import { useSelector } from "react-redux";
 
 const Layout = () => {
-  const {width} = useWindowDimensions();
-  const collapsed = useSelector((state: any) => state.menu);
+  const { width } = useWindowDimensions();
 
+  const collapsed = useSelector((state: any) => state.menu).collapsed
 
   return (
     <Row>
       {/* sidebar menu */}
-      <Col xs={0} md={3}>
-        <div style={{ position: "fixed", width: "14rem" }}>
-          <SidebarMenu menuItems={routes}/>
+      <Col xs={0} md={2}>
+        <div style={{ position: "fixed", width: "13rem" }}>
+          <SidebarMenu menuItems={routes} />
         </div>
       </Col>
       {/* body */}
-      <Col offset={(width < 1600 || collapsed) ? (width < 576 ? 0 : 2 ) : 3 } xs={24} md={22} lg={ collapsed ? 22 : 21} style={{ padding: "1rem 2rem" }}>
+      <Col
+        offset={width < 1600 ? (width < 768 ? (width < 576 ? 0 : (!collapsed ? 1 : 0)) : (!collapsed ? 2 : 1)) : (!collapsed ? 3 : 2)}
+        xs={24}
+        md={collapsed ? 23 : 22}
+        lg={collapsed ? 22: 21}
+        style={{ padding: "1rem 2rem", marginLeft: collapsed ? "6rem" : ""}}
+      >
         <Topbar />
         <Outlet />
       </Col>

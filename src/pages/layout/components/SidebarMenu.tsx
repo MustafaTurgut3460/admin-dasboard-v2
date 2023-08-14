@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Drawer, Menu } from "antd";
+import { Button, Col, Divider, Drawer, Menu, Row } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGauge,
@@ -17,7 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "../../../actions/pageAction";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Icon } from "@iconify/react";
-import { setCollapsed } from "../../../actions/menuAction";
+import { showDrawer } from "../../../actions/menuAction";
+import { setCollapsed as setCollapsedAction } from "../../../actions/menuAction";
 
 export interface MenuItem {
   key: string;
@@ -34,7 +35,8 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
   );
 
   const dispatch = useDispatch();
-  const collapsed = useSelector((state: any) => state.menu);
+  const drawer = useSelector((state: any) => state.menu).drawer;
+  const collapsed = useSelector((state: any) => state.menu).collapsed;
 
   const { width } = useWindowDimensions();
 
@@ -100,14 +102,13 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
         style={{ height: "100vh" }}
         inlineCollapsed={width < 1600 || collapsed}
       >
-        {!(width < 1600) && !collapsed ? (
+        {!(width < 1600 || collapsed) ? (
           <div
             style={{
               marginTop: "1rem",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              marginBottom: "3rem",
             }}
           >
             <img
@@ -129,7 +130,6 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
             style={{
               display: "flex",
               justifyContent: "center",
-              marginBottom: "3rem",
               marginTop: "1rem",
             }}
           >
@@ -141,19 +141,50 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
           </div>
         )}
 
+        <Row align={"middle"}>
+          <Col
+            span={21}
+            style={{
+              marginRight: collapsed ? "" : "0.4rem",
+              marginLeft: collapsed ? "" : "0.4rem",
+            }}
+          >
+            <Divider />
+          </Col>
+          {width > 1600 && (
+            <Col style={{ marginRight: "-3rem"}}>
+              <Button
+                shape="circle"
+                type="ghost"
+                size="small"
+                onClick={() => {
+                  dispatch(setCollapsedAction(!collapsed));
+                }}
+              >
+                <Icon
+                  icon="dashicons:admin-collapse"
+                  fontSize={24}
+                  color="gray"
+                  rotate={collapsed ? 2 : 0}
+                />
+              </Button>
+            </Col>
+          )}
+        </Row>
+
         {/* Menü Öğeleri */}
         {generateDynmaicMenu(menuItems)}
       </Menu>
       <Drawer
         title="Menü"
         placement="left"
-        onClose={(e) => dispatch(setCollapsed(!collapsed))}
-        open={collapsed && width < 1600}
+        onClose={(e) => dispatch(showDrawer(!showDrawer))}
+        open={drawer}
       >
         <Menu
           defaultSelectedKeys={[selectedKey]}
           mode="inline"
-          style={{ height: "100vh", backgroundColor: "transparent"}}
+          style={{ height: "100vh", backgroundColor: "transparent" }}
         >
           <div
             style={{

@@ -97,7 +97,7 @@ const Dashboard = () => {
   return (
     <div style={{ marginTop: "2rem" }}>
       <Row justify={"space-between"}>
-        <Col xs={24} sm={20} md={16} lg={11} xl={6}>
+        <Col xs={24} md={11} xxl={6}>
           <DashboardCard
             color={"#5161ce"}
             data={data1}
@@ -106,7 +106,7 @@ const Dashboard = () => {
             value={451564}
           />
         </Col>
-        <Col xs={24} sm={20} md={16} lg={11} xl={6}>
+        <Col xs={24} md={11} lg={11} xxl={6}>
           <DashboardCard
             color={"#d1757e"}
             data={data2}
@@ -115,7 +115,7 @@ const Dashboard = () => {
             value={41251}
           />
         </Col>
-        <Col xs={24} sm={20} md={16} lg={11} xl={6}>
+        <Col xs={24} md={11} xxl={6}>
           <DashboardCard
             color={"#66ccbe"}
             data={data3}
@@ -124,7 +124,7 @@ const Dashboard = () => {
             value={5622}
           />
         </Col>
-        <Col xs={24} sm={20} md={16} lg={11} xl={5}>
+        <Col xs={24} md={11} xxl={5}>
           <DashboardCard
             color={"#5c8bd6"}
             data={data4}
