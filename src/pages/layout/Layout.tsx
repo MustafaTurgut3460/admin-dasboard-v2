@@ -16,7 +16,7 @@ const Layout = () => {
     <Row>
       {/* sidebar menu */}
       <Col xs={0} md={2}>
-        <div style={{ position: "fixed", width: `${width/125}rem`, overflowY: "auto", msOverflowStyle: "none", scrollbarWidth: "none", paddingBottom: "2rem"}} className="sidebarmenu">
+        <div style={{ position: "fixed", width: `${width/125}rem`, overflowY: "auto", msOverflowStyle: "none", scrollbarWidth: "none"}} className="sidebarmenu">
           <SidebarMenu menuItems={routes} />
         </div>
       </Col>
@@ -28,7 +28,7 @@ const Layout = () => {
         lg={collapsed ? 22: 21}
         style={{ padding: "1rem 2rem", marginLeft: collapsed ? "6rem" : ""}}
       >
-        <Topbar />
+        <Topbar/>
         <Outlet />
       </Col>
     </Row>

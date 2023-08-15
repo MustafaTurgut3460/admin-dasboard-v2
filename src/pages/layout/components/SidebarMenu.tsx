@@ -103,28 +103,57 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
         inlineCollapsed={width < 1600 || collapsed}
       >
         {!(width < 1600 || collapsed) ? (
-          <div
-            style={{
-              marginTop: "1rem",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img
-              src={require("../../../assets/images/BaykarLogo.png")}
-              style={{ width: 36, height: "auto", backgroundColor: "white" }}
-              alt="Logo"
-            />
-            <div style={{ marginLeft: "0.5rem" }}>
-              <p>BAYKAR</p>
-              <p
-                style={{ marginTop: "1rem", fontSize: "0.66rem", opacity: 0.5 }}
+          <>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                padding: "0.5rem",
+              }}
+            >
+              <Button
+                shape="circle"
+                type="default"
+                size="small"
+                onClick={() => {
+                  dispatch(setCollapsedAction(!collapsed));
+                }}
               >
-                Production
-              </p>
+                <Icon
+                  icon="solar:double-alt-arrow-left-line-duotone"
+                  color="#1677ff"
+                  fontSize={22}
+                  rotate={collapsed ? 2 : 0}
+                />
+              </Button>
             </div>
-          </div>
+            <div
+              style={{
+                marginTop: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={require("../../../assets/images/BaykarLogo.png")}
+                style={{ width: 36, height: "auto", backgroundColor: "white" }}
+                alt="Logo"
+              />
+              <div style={{ marginLeft: "0.5rem" }}>
+                <p>BAYKAR</p>
+                <p
+                  style={{
+                    marginTop: "1rem",
+                    fontSize: "0.66rem",
+                    opacity: 0.5,
+                  }}
+                >
+                  Production
+                </p>
+              </div>
+            </div>
+          </>
         ) : (
           <div
             style={{
@@ -145,26 +174,26 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
           <Col
             span={21}
             style={{
-              marginRight: collapsed ? "" : "0.1rem",
-              marginLeft: collapsed ? "" : "0.1rem",
+              marginRight: collapsed ? "" : "0.6rem",
+              marginLeft: collapsed ? "" : "0.6rem",
             }}
           >
             <Divider />
           </Col>
-          {width > 1600 && (
-            <Col style={{ marginRight: "-3rem"}}>
+          {(width > 1600 && collapsed) && (
+            <Col style={{ marginRight: "-3rem" }}>
               <Button
                 shape="circle"
-                type="ghost"
+                type="default"
                 size="small"
                 onClick={() => {
                   dispatch(setCollapsedAction(!collapsed));
                 }}
               >
                 <Icon
-                  icon="dashicons:admin-collapse"
-                  fontSize={24}
-                  color="gray"
+                  icon="solar:double-alt-arrow-left-line-duotone"
+                  color="#1677ff"
+                  fontSize={22}
                   rotate={collapsed ? 2 : 0}
                 />
               </Button>

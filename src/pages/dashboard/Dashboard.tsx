@@ -22,6 +22,7 @@ import p3 from "../../assets/images/product3.jpg";
 import CountUp from "react-countup";
 import BasicColumnBarChart from "../bar-chart/components/BasicColumnBarChart";
 import BasicBarChart from "../bar-chart/components/BasicBarChart";
+import useWindowDimensions from "../../hooks/window-dimention";
 
 const items: MenuProps["items"] = [
   {
@@ -94,6 +95,8 @@ const Dashboard = () => {
     { x: "Eylül", y: 10 },
   ];
 
+  const {width} = useWindowDimensions();
+
   return (
     <div style={{ marginTop: "2rem" }}>
       <Row justify={"space-between"}>
@@ -153,26 +156,28 @@ const Dashboard = () => {
           <DashboardDonutChart />
         </Col>
         {/* line chart */}
-        <Col xs={24} xl={15} className="card">
-          <Row justify={"space-between"} style={{ alignItems: "center" }}>
-            <Col>
-              <p style={{ fontSize: "1.1rem" }}>Yıllık Satış</p>
-              <p style={{ fontSize: "0.8rem", opacity: 0.5 }}>
-                Geçen seneden (+43%) daha fazla
-              </p>
-            </Col>
-            <Col>
-              <Dropdown menu={{ items, onClick }} trigger={["click"]}>
-                <a onClick={() => {}}>
-                  <Space>
-                    {year}
-                    <FontAwesomeIcon icon={faArrowDown} />
-                  </Space>
-                </a>
-              </Dropdown>
-            </Col>
-          </Row>
-          <DashboardLineChart />
+        <Col xs={24} xl={16}>
+          <div style={{ marginLeft: width > 1200 ? "1rem" : "" }} className="card">
+            <Row justify={"space-between"} style={{ alignItems: "center" }}>
+              <Col>
+                <p style={{ fontSize: "1.1rem" }}>Yıllık Satış</p>
+                <p style={{ fontSize: "0.8rem", opacity: 0.5 }}>
+                  Geçen seneden (+43%) daha fazla
+                </p>
+              </Col>
+              <Col>
+                <Dropdown menu={{ items, onClick }} trigger={["click"]}>
+                  <a onClick={() => {}}>
+                    <Space>
+                      {year}
+                      <FontAwesomeIcon icon={faArrowDown} />
+                    </Space>
+                  </a>
+                </Dropdown>
+              </Col>
+            </Row>
+            <DashboardLineChart />
+          </div>
         </Col>
       </Row>
 
@@ -195,26 +200,28 @@ const Dashboard = () => {
           <BasicBarChart />
         </Col>
         {/* line chart */}
-        <Col xs={24} xl={11} className="card">
-          <Row justify={"space-between"} style={{ alignItems: "center" }}>
-            <Col>
-              <p style={{ fontSize: "1.1rem" }}>Yıllık Satış</p>
-              <p style={{ fontSize: "0.8rem", opacity: 0.5 }}>
-                Geçen seneden (+43%) daha fazla
-              </p>
-            </Col>
-            <Col>
-              <Dropdown menu={{ items, onClick }} trigger={["click"]}>
-                <a onClick={() => {}}>
-                  <Space>
-                    {year}
-                    <FontAwesomeIcon icon={faArrowDown} />
-                  </Space>
-                </a>
-              </Dropdown>
-            </Col>
-          </Row>
-          <BasicColumnBarChart />
+        <Col xs={24} xl={12}>
+          <div className="card" style={{marginLeft: width > 1200 ? "1rem" : ""}}>
+            <Row justify={"space-between"} style={{ alignItems: "center" }}>
+              <Col>
+                <p style={{ fontSize: "1.1rem" }}>Yıllık Satış</p>
+                <p style={{ fontSize: "0.8rem", opacity: 0.5 }}>
+                  Geçen seneden (+43%) daha fazla
+                </p>
+              </Col>
+              <Col>
+                <Dropdown menu={{ items, onClick }} trigger={["click"]}>
+                  <a onClick={() => {}}>
+                    <Space>
+                      {year}
+                      <FontAwesomeIcon icon={faArrowDown} />
+                    </Space>
+                  </a>
+                </Dropdown>
+              </Col>
+            </Row>
+            <BasicColumnBarChart />
+          </div>
         </Col>
       </Row>
 
@@ -237,52 +244,54 @@ const Dashboard = () => {
           </Row>
           <DashboardBasicTable />
         </Col>
-        <Col offset={1} xs={24} xl={8} className="card">
-          <Row
-            style={{ alignItems: "center", marginBottom: "2rem" }}
-            justify={"space-between"}
-          >
-            <Col>
-              <p>En Çok Satan Ürünler</p>
-            </Col>
-            <Col>
-              <Button type="text" shape="circle">
-                <FontAwesomeIcon
-                  icon={faEllipsis}
-                  fontSize={24}
-                  opacity={0.5}
-                />
-              </Button>
-            </Col>
-          </Row>
-          <ProductItem
-            name={"Ürün İsmi"}
-            description={"Ürün açıklaması"}
-            tagColor={"gold"}
-            image={p1}
-            number={1}
-          />
-          <ProductItem
-            name={"Ürün İsmi"}
-            description={"Ürün açıklaması"}
-            tagColor={"geekblue"}
-            image={p2}
-            number={2}
-          />
-          <ProductItem
-            name={"Ürün İsmi"}
-            description={"Ürün açıklaması"}
-            tagColor={"orange"}
-            image={p3}
-            number={3}
-          />
-          <ProductItem
-            name={"Ürün İsmi"}
-            description={"Ürün açıklaması"}
-            tagColor={"default"}
-            image={p1}
-            number={4}
-          />
+        <Col xs={24} xl={9}>
+          <div style={{ marginLeft: width > 1200 ? "1rem" : "" }} className="card">
+            <Row
+              style={{ alignItems: "center", marginBottom: "2rem" }}
+              justify={"space-between"}
+            >
+              <Col>
+                <p>En Çok Satan Ürünler</p>
+              </Col>
+              <Col>
+                <Button type="text" shape="circle">
+                  <FontAwesomeIcon
+                    icon={faEllipsis}
+                    fontSize={24}
+                    opacity={0.5}
+                  />
+                </Button>
+              </Col>
+            </Row>
+            <ProductItem
+              name={"Ürün İsmi"}
+              description={"Ürün açıklaması"}
+              tagColor={"gold"}
+              image={p1}
+              number={1}
+            />
+            <ProductItem
+              name={"Ürün İsmi"}
+              description={"Ürün açıklaması"}
+              tagColor={"geekblue"}
+              image={p2}
+              number={2}
+            />
+            <ProductItem
+              name={"Ürün İsmi"}
+              description={"Ürün açıklaması"}
+              tagColor={"orange"}
+              image={p3}
+              number={3}
+            />
+            <ProductItem
+              name={"Ürün İsmi"}
+              description={"Ürün açıklaması"}
+              tagColor={"default"}
+              image={p1}
+              number={4}
+            />
+          </div>
         </Col>
       </Row>
     </div>

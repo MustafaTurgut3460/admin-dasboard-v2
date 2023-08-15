@@ -21,7 +21,6 @@ body {
   width: 100vw;
   height: 100vh;
   font-size: 0.88rem;
-  user-select: none;
   overflow-x: hidden;
 }
 
@@ -47,8 +46,8 @@ body {
 }
 
 .dark-mode-variables {
-  --color-background: #0f151d;
-  --color-white: #212631;
+  --color-background: #0f1011;
+  --color-white: #1d1d1d;
   --color-text: #f0f1f5;
   --color-light-text: rgb(190, 190, 190);
   --color-light: rgba(0, 0, 0, 0.1);
@@ -66,4 +65,3 @@ body {
 .sidebarmenu::-webkit-scrollbar {
   display: none;
 }
-

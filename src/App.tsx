@@ -46,11 +46,11 @@ function App() {
       <ConfigProvider
         theme={{
           algorithm: dark ? theme.defaultAlgorithm : theme.darkAlgorithm,
-          token: {
-            colorText: dark ? "#000" : "#d1d1d1",
-            colorBgBase: dark ? "#f6f6f9" : "#202528",
-            colorBgContainer: dark ? "#f6f6f9" : "#202528",
-          },
+          // token: {
+          //   colorText: dark ? "#000" : "#d1d1d1",
+          //   colorBgBase: dark ? "#f6f6f9" : "#202528",
+          //   colorBgContainer: dark ? "#f6f6f9" : "#202528",
+          // },
         }}
       >
         <ThemeProvider theme={muixTheme}>

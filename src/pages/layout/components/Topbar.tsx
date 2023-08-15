@@ -34,23 +34,11 @@ import useWindowDimensions from "../../../hooks/window-dimention";
 
 const items: MenuProps["items"] = [
   {
-    label: (
-      <img
-        src={require("../../../assets/images/turkey.png")}
-        alt=""
-        style={{ width: 24, height: 24 }}
-      />
-    ),
+    label: "Türkçe",
     key: "0",
   },
   {
-    label: (
-      <img
-        src={require("../../../assets/images/uk.png")}
-        alt=""
-        style={{ width: 24, height: 24 }}
-      />
-    ),
+    label: "English",
     key: "1",
   },
 ];
@@ -101,7 +89,7 @@ const Topbar = () => {
   const [checked, setChecked] = useState(theme.theme === Themes.Light);
   const navigate = useNavigate();
 
-  const {width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const pagePath = useSelector((state: any) => state.page).path;
 
@@ -136,7 +124,7 @@ const Topbar = () => {
   return (
     <Row style={{ paddingRight: "1rem" }}>
       <Col span={24}>
-        <Row justify={"space-between"}>
+        <Row justify={"space-between"} align={"middle"}>
           {/* title */}
           <Col>
             <Breadcrumb items={[{ title: "Home" }, ...pages]} />
@@ -146,8 +134,8 @@ const Topbar = () => {
           <Col>
             <Row style={{ alignItems: "center" }}>
               {/* icons */}
-              <Space size={24}>
-                { width < 768 && (
+              <Space size={12}>
+                {width < 768 && (
                   <Col>
                     <Button
                       type="text"
@@ -159,13 +147,9 @@ const Topbar = () => {
                   </Col>
                 )}
                 <Col>
-                  <Dropdown menu={{ items }} trigger={["click"]}>
+                  <Dropdown menu={{ items }} trigger={["click"]} placement="bottomRight">
                     <Button type="text" shape="circle">
-                      <img
-                        src={require("../../../assets/images/turkey.png")}
-                        alt=""
-                        style={{ width: 24, height: 24 }}
-                      />
+                      <Icon icon="tabler:language" fontSize={24} style={{color: "var(--color-light-text)"}} />
                     </Button>
                   </Dropdown>
                 </Col>
@@ -177,22 +161,27 @@ const Topbar = () => {
                   >
                     <Button type="text" shape="circle">
                       <Badge count={3} size="small" style={{ color: "white" }}>
-                        <img
-                          src={require("../../../assets/images/bell.png")}
-                          alt=""
-                          style={{ width: 24 }}
-                        />
+                      <Icon icon="mdi:bell-outline" fontSize={24} style={{color: "var(--color-light-text)"}}/>
                       </Badge>
                     </Button>
                   </Dropdown>
                 </Col>
                 <Col>
-                  <Switch
+                  <Button type="text" shape="circle" onClick={() => setChecked(checked => !checked)}>
+                    {
+                      checked
+                      ?
+                      <Icon icon="entypo:light-up" fontSize={24} style={{color: "var(--color-light-text)"}} />
+                      :
+                      <Icon icon="ic:outline-dark-mode" color="lightgray" fontSize={24}/>
+                    }
+                  </Button>
+                  {/* <Switch
                     checkedChildren={<FontAwesomeIcon icon={faSun} />}
                     unCheckedChildren={<FontAwesomeIcon icon={faMoon} />}
                     defaultChecked={checked}
                     onChange={(checked) => setChecked(checked)}
-                  />
+                  /> */}
                 </Col>
                 <Col>
                   <Dropdown

@@ -4,13 +4,18 @@ import BasicTable from "./components/BasicTable";
 import CustomPaginationTable from "./components/CustomPaginationTable";
 import FullTable from "./components/FullTable";
 import { columns, datas } from "./values/data";
+import FullAntdTable from "./components/FullAntdTable";
 
 const Tables = () => {
-
   const [fullTableColumns, setFullTableColumns] = useState(columns);
 
   return (
     <>
+      <Row>
+        <Col span={24} style={{marginTop: "5rem"}}>
+          <FullAntdTable />
+        </Col>
+      </Row>
       <Row justify={"space-between"}>
         <Col xs={24} lg={10} className="card">
           <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
@@ -28,7 +33,13 @@ const Tables = () => {
       <Row>
         <Col span={24} className="card">
           <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Full Table</p>
-          <FullTable datas={datas} columns={fullTableColumns} height={500} initPageSize={5} pageSizeOptions={[5, 10, 20, 50, 100]} />
+          <FullTable
+            datas={datas}
+            columns={fullTableColumns}
+            height={500}
+            initPageSize={5}
+            pageSizeOptions={[5, 10, 20, 50, 100]}
+          />
         </Col>
       </Row>
     </>
