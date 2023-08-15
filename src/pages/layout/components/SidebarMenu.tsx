@@ -99,7 +99,7 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
       <Menu
         defaultSelectedKeys={[selectedKey]}
         mode="inline"
-        style={{ height: "100vh" }}
+        style={{ height: "100vh"}}
         inlineCollapsed={width < 1600 || collapsed}
       >
         {!(width < 1600 || collapsed) ? (
@@ -145,8 +145,8 @@ const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
           <Col
             span={21}
             style={{
-              marginRight: collapsed ? "" : "0.4rem",
-              marginLeft: collapsed ? "" : "0.4rem",
+              marginRight: collapsed ? "" : "0.1rem",
+              marginLeft: collapsed ? "" : "0.1rem",
             }}
           >
             <Divider />

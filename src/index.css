@@ -62,3 +62,8 @@ body {
 .social-icon-div:hover {
   background-color: lightgray;
 }
+
+.sidebarmenu::-webkit-scrollbar {
+  display: none;
+}
+

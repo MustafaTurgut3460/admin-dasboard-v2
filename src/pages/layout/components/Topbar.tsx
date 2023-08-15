@@ -146,7 +146,7 @@ const Topbar = () => {
           <Col>
             <Row style={{ alignItems: "center" }}>
               {/* icons */}
-              <Space size={10}>
+              <Space size={24}>
                 { width < 768 && (
                   <Col>
                     <Button

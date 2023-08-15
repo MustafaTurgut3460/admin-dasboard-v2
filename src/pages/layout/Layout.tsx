@@ -16,7 +16,7 @@ const Layout = () => {
     <Row>
       {/* sidebar menu */}
       <Col xs={0} md={2}>
-        <div style={{ position: "fixed", width: "13rem" }}>
+        <div style={{ position: "fixed", width: `${width/125}rem`, overflowY: "auto", msOverflowStyle: "none", scrollbarWidth: "none", paddingBottom: "2rem"}} className="sidebarmenu">
           <SidebarMenu menuItems={routes} />
         </div>
       </Col>
