@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import useWindowDimensions from "../../../hooks/window-dimention";
 
 interface DataType {
-  key: string;
+  key: number;
   name: string;
   age: number;
   address: string;
@@ -28,24 +29,24 @@ const columns: ColumnsType<DataType> = [
     dataIndex: "name",
     key: "name",
     render: (text) => <a>{text}</a>,
-    width: 100,
+    width: 150,
   },
   {
     title: "Age",
     dataIndex: "age",
-    width: 100,
+    width: 150,
     key: "age",
   },
   {
     title: "Address",
     dataIndex: "address",
-    width: 100,
+    width: 200,
     key: "address",
   },
   {
     title: "Tags",
     key: "tags",
-    width: 100,
+    width: 200,
     dataIndex: "tags",
     render: (_, { tags }) => (
       <>
@@ -65,7 +66,7 @@ const columns: ColumnsType<DataType> = [
   },
   {
     title: "Action",
-    width: 100,
+    width: 200,
     key: "action",
     render: (_, record) => (
       <Space size="middle">
@@ -77,202 +78,195 @@ const columns: ColumnsType<DataType> = [
   {
     title: "Col1",
     dataIndex: "col1",
-    width: 100,
+    width: 150,
     key: "col1",
   },
   {
     title: "Col2",
     dataIndex: "col2",
-    width: 100,
+    width: 150,
     key: "col2",
   },
   {
     title: "Col3",
     dataIndex: "col3",
-    width: 100,
+    width: 150,
     key: "col3",
   },
   {
     title: "Col4",
     dataIndex: "col4",
-    width: 100,
+    width: 150,
     key: "col4",
   },
   {
     title: "Col4",
     dataIndex: "col4",
-    width: 100,
+    width: 150,
     key: "col4",
   },
   {
     title: "Col5",
     dataIndex: "col5",
-    width: 100,
+    width: 150,
     key: "col5",
   },
   {
     title: "Col6",
     dataIndex: "col6",
-    width: 100,
+    width: 150,
     key: "col6",
   },
   {
     title: "Col7",
     dataIndex: "col7",
-    width: 100,
+    width: 150,
     key: "col7",
   },
   {
     title: "Col8",
     dataIndex: "col8",
-    width: 100,
+    width: 150,
     key: "col8",
   },
   {
     title: "Col9",
     dataIndex: "col9",
-    width: 100,
+    width: 150,
     key: "col9",
   },
   {
     title: "Col10",
     dataIndex: "col10",
-    width: 100,
+    width: 150,
     key: "col10",
   },
   {
     title: "Col11",
     dataIndex: "col11",
-    width: 100,
+    width: 150,
     key: "col11",
   },
   {
     title: "Col12",
     dataIndex: "col12",
-    width: 100,
+    width: 150,
     key: "col12",
   },
   {
     title: "Col4",
     dataIndex: "col4",
-    width: 100,
+    width: 150,
     key: "col4",
   },
   {
     title: "Col5",
     dataIndex: "col5",
-    width: 100,
+    width: 150,
     key: "col5",
   },
   {
     title: "Col6",
     dataIndex: "col6",
-    width: 100,
+    width: 150,
     key: "col6",
   },
   {
     title: "Col7",
     dataIndex: "col7",
-    width: 100,
+    width: 150,
     key: "col7",
   },
   {
     title: "Col8",
     dataIndex: "col8",
-    width: 100,
+    width: 150,
     key: "col8",
   },
   {
     title: "Col9",
     dataIndex: "col9",
-    width: 100,
+    width: 150,
     key: "col9",
   },
   {
     title: "Col10",
     dataIndex: "col10",
-    width: 100,
+    width: 150,
     key: "col10",
   },
   {
     title: "Col11",
     dataIndex: "col11",
-    width: 100,
+    width: 150,
     key: "col11",
   },
   {
     title: "Col12",
     dataIndex: "col12",
-    width: 100,
+    width: 150,
     key: "col12",
   },
-  
 ];
 
-const data: DataType[] = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-    col1: "Col",
-    col2: "Col",
-    col3: "Col",
-    col4: "Col",
-    col5: "Col",
-    col6: "Col",
-    col7: "Col",
-    col8: "Col",
-    col9: "Col",
-    col10: "Col",
-    col11: "Col",
-    col12: "Col",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-    col1: "Col",
-    col2: "Col",
-    col3: "Col",
-    col4: "Col",
-    col5: "Col",
-    col6: "Col",
-    col7: "Col",
-    col8: "Col",
-    col9: "Col",
-    col10: "Col",
-    col11: "Col",
-    col12: "Col",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-    col1: "Col",
-    col2: "Col",
-    col3: "Col",
-    col4: "Col",
-    col5: "Col",
-    col6: "Col",
-    col7: "Col",
-    col8: "Col",
-    col9: "Col",
-    col10: "Col",
-    col11: "Col",
-    col12: "Col",
-  },
-];
+function generateRandomStringData(): string {
+  const possibleWords = [
+    "apple",
+    "banana",
+    "cherry",
+    "date",
+    "elderberry",
+    "fig",
+    "grape",
+    "honeydew",
+    "kiwi",
+    "lemon",
+    "mango",
+    "orange",
+    "pear",
+    "quince",
+    "raspberry",
+    "strawberry",
+    "tangerine",
+    "watermelon",
+  ];
+
+  const randomIndex = Math.floor(Math.random() * possibleWords.length);
+  return possibleWords[randomIndex];
+}
 
 const FullAntdTable = () => {
+  const [datas, setDatas] = useState<DataType[]>([]);
+  const {width, height} = useWindowDimensions();
+
+  useEffect(() => {
+    for (let i = 0; i < 1000; i++) {
+      const data: DataType = {
+        key: i + 1,
+        name: "John Brown",
+        age: 32,
+        address: "New York No. 1 Lake Park",
+        tags: ["nice", "developer"],
+        col1: generateRandomStringData(),
+        col2: generateRandomStringData(),
+        col3: generateRandomStringData(),
+        col4: generateRandomStringData(),
+        col5: generateRandomStringData(),
+        col6: generateRandomStringData(),
+        col7: generateRandomStringData(),
+        col8: generateRandomStringData(),
+        col9: generateRandomStringData(),
+        col10: generateRandomStringData(),
+        col11: generateRandomStringData(),
+        col12: generateRandomStringData(),
+      };
+
+      setDatas(datas => [...datas, data])
+    }
+  }, []);
   return (
     <div>
-      <Table columns={columns} dataSource={data} scroll={{y: 1500}}/>
+      <Table columns={columns} dataSource={datas} scroll={{ y: height-250 }} />
     </div>
   );
 };

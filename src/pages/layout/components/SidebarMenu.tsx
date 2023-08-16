@@ -29,6 +29,7 @@ export interface MenuItem {
   path: string;
 }
 
+
 const SidebarMenu = ({ menuItems }: { menuItems: MenuItem[] }) => {
   const [selectedKey, setSelectedKey] = useState(
     localStorage.getItem("key") || menuItems[0].key

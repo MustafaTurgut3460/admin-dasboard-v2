@@ -23,24 +23,6 @@ function App() {
 
   const dark: boolean = themeSelector.theme === Themes.Dark;
 
-  const [muixTheme, setMuixTheme] = useState(
-    createTheme({
-      palette: {
-        mode: dark ? "dark" : "light",
-      },
-    })
-  );
-
-  useEffect(() => {
-    setMuixTheme(
-      createTheme({
-        palette: {
-          mode: dark ? "light" : "dark",
-        },
-      })
-    );
-  }, [themeSelector]);
-
   return (
     <>
       <ConfigProvider
@@ -53,28 +35,26 @@ function App() {
           // },
         }}
       >
-        <ThemeProvider theme={muixTheme}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Dashboard />} />
-                <Route path="tables" element={<Tables />} />
-                <Route path="cards" element={<Cards />} />
-                <Route path="forms" element={<Forms />} />
-                <Route path="charts" element={<Charts />}>
-                  <Route index path="line" element={<LineChart />} />
-                  <Route path="area" element={<AreaChart />} />
-                  <Route path="bar" element={<BarChart />} />
-                  <Route path="pie" element={<PieChart />} />
-                </Route>
-                <Route path="profile" element={<Profile />} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="tables" element={<Tables />} />
+              <Route path="cards" element={<Cards />} />
+              <Route path="forms" element={<Forms />} />
+              <Route path="charts" element={<Charts />}>
+                <Route index path="line" element={<LineChart />} />
+                <Route path="area" element={<AreaChart />} />
+                <Route path="bar" element={<BarChart />} />
+                <Route path="pie" element={<PieChart />} />
               </Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-          <Outlet />
-        </ThemeProvider>
+              <Route path="profile" element={<Profile />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        <Outlet />
       </ConfigProvider>
     </>
   );

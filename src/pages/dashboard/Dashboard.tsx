@@ -95,12 +95,12 @@ const Dashboard = () => {
     { x: "Eylül", y: 10 },
   ];
 
-  const {width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   return (
     <div style={{ marginTop: "2rem" }}>
       <Row justify={"space-between"}>
-        <Col xs={24} md={11} xxl={6}>
+        <Col xs={24} md={12} xxl={6}>
           <DashboardCard
             color={"#5161ce"}
             data={data1}
@@ -109,16 +109,18 @@ const Dashboard = () => {
             value={451564}
           />
         </Col>
-        <Col xs={24} md={11} lg={11} xxl={6}>
-          <DashboardCard
-            color={"#d1757e"}
-            data={data2}
-            dataName={"Veri 2"}
-            label={"Aylık Gelir (₺)"}
-            value={41251}
-          />
+        <Col xs={24} md={12} xxl={6}>
+          <div style={{ marginLeft: width < 768 ? "" : (width > 1600 ? "" : "1rem") }}>
+            <DashboardCard
+              color={"#d1757e"}
+              data={data2}
+              dataName={"Veri 2"}
+              label={"Aylık Gelir (₺)"}
+              value={41251}
+            />
+          </div>
         </Col>
-        <Col xs={24} md={11} xxl={6}>
+        <Col xs={24} md={12} xxl={6}>
           <DashboardCard
             color={"#66ccbe"}
             data={data3}
@@ -127,14 +129,16 @@ const Dashboard = () => {
             value={5622}
           />
         </Col>
-        <Col xs={24} md={11} xxl={5}>
-          <DashboardCard
-            color={"#5c8bd6"}
-            data={data4}
-            dataName={"Veri 4"}
-            label={"Kullanıcı Sayısı"}
-            value={4632}
-          />
+        <Col xs={24} md={12} xxl={5}>
+          <div style={{ marginLeft: width < 768 ? "" : (width > 1600 ? "" : "1rem") }}>
+            <DashboardCard
+              color={"#5c8bd6"}
+              data={data4}
+              dataName={"Veri 4"}
+              label={"Kullanıcı Sayısı"}
+              value={4632}
+            />
+          </div>
         </Col>
       </Row>
       <Row justify={"space-between"}>
@@ -157,7 +161,10 @@ const Dashboard = () => {
         </Col>
         {/* line chart */}
         <Col xs={24} xl={16}>
-          <div style={{ marginLeft: width > 1200 ? "1rem" : "" }} className="card">
+          <div
+            style={{ marginLeft: width > 1200 ? "1rem" : "" }}
+            className="card"
+          >
             <Row justify={"space-between"} style={{ alignItems: "center" }}>
               <Col>
                 <p style={{ fontSize: "1.1rem" }}>Yıllık Satış</p>
@@ -201,7 +208,10 @@ const Dashboard = () => {
         </Col>
         {/* line chart */}
         <Col xs={24} xl={12}>
-          <div className="card" style={{marginLeft: width > 1200 ? "1rem" : ""}}>
+          <div
+            className="card"
+            style={{ marginLeft: width > 1200 ? "1rem" : "" }}
+          >
             <Row justify={"space-between"} style={{ alignItems: "center" }}>
               <Col>
                 <p style={{ fontSize: "1.1rem" }}>Yıllık Satış</p>
@@ -245,7 +255,10 @@ const Dashboard = () => {
           <DashboardBasicTable />
         </Col>
         <Col xs={24} xl={9}>
-          <div style={{ marginLeft: width > 1200 ? "1rem" : "" }} className="card">
+          <div
+            style={{ marginLeft: width > 1200 ? "1rem" : "" }}
+            className="card"
+          >
             <Row
               style={{ alignItems: "center", marginBottom: "2rem" }}
               justify={"space-between"}

@@ -12,11 +12,11 @@ const Tables = () => {
   return (
     <>
       <Row>
-        <Col span={24} style={{marginTop: "5rem"}}>
+        <Col span={24} style={{marginTop: "2rem"}}>
           <FullAntdTable />
         </Col>
       </Row>
-      <Row justify={"space-between"}>
+      {/* <Row justify={"space-between"}>
         <Col xs={24} lg={10} className="card">
           <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
             Basic Table
@@ -41,7 +41,7 @@ const Tables = () => {
             pageSizeOptions={[5, 10, 20, 50, 100]}
           />
         </Col>
-      </Row>
+      </Row> */}
     </>
   );
 };
